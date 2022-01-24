@@ -4,7 +4,7 @@ public class PistarServiceFactory {
 	private String  method;
 	private String url;
 	private Object data;
-	private String resultPath;
+	private String resultNameFile;
 	
 	public String getMethod() {
 		return method;
@@ -24,10 +24,10 @@ public class PistarServiceFactory {
 	public void setData(Object data) {
 		this.data = data;
 	}
-	public String getResultPath() {
-		return resultPath;
+	public String getResultNameFile() {
+		return resultNameFile;
 	}
-	public void setResultPath(String resultPath) {
-		this.resultPath = resultPath;
+	public void setResultNameFile(String resultPath) {
+		this.resultNameFile = resultPath;
 	}
 }

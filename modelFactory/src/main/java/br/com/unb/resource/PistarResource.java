@@ -19,12 +19,4 @@ public class PistarResource {
 	public Object executePistarFactoryService(@RequestBody PistarServiceFactory pistarFactory) {
 		return this.service.executePistarFactoryService(pistarFactory);
 	}
-
-	@RequestMapping(value = "/teste", method = RequestMethod.GET)
-	public PistarServiceFactory teste() {
-		PistarServiceFactory s = new PistarServiceFactory();
-		s.setMethod("POST");
-		
-		return s;
-	}
 }
