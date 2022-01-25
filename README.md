@@ -24,7 +24,7 @@ The configuration file structure is constructed by the following attributes: env
  
  
       InputFile = {
-         "type": String,
+         "type": InputFileTypeEnum,
          "attributeName": String
       }
  
@@ -33,7 +33,7 @@ The configuration file structure is constructed by the following attributes: env
          "method":  String,
          "url":  String,
          "resultNameFile":  String,
-         "inputs": Array<>
+         "inputs": Array<InputFile>
       }
  
  
