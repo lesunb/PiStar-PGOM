@@ -104,4 +104,4 @@ The attribute properties represent the properties displayed in the elements.
  - elementType: The type of element selected
  - childrens: The childrens of property
  
-![envButtons](docs/images/envProperties.png)
+<!-- ![envButtons](docs/images/envProperties.png) -->
