@@ -27,8 +27,7 @@ The buttons
 
 ### Properties
 
-{
-
+    {
          "name": String,
          "value": String,
          "placeholder": String,
@@ -37,4 +36,4 @@ The buttons
          "type": String,
          "elementType": String,
          "childrens": Array<Properties>
-}
+    }
