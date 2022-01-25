@@ -16,15 +16,15 @@ The environment configuration file is a json file that has fundamental attribute
 The configuration file structure is constructed by the following attributes: environment, buttons and properties.
        {
           "enviromment": String,
-          "buttons": Array<Buttons>
-          "properties": Array<Properties>
+          "buttons": Array<Buttons.class>
+          "properties": Array<Properties.class>
        }
  
 ### Enviromment Classes
  
  
       InputFile = {
-         "type": InputFileTypeEnum,
+         "type": InputFileTypeEnum.class,
          "attributeName": String
       }
  
@@ -33,7 +33,7 @@ The configuration file structure is constructed by the following attributes: env
          "method":  String,
          "url":  String,
          "resultNameFile":  String,
-         "inputs": Array<InputFile>
+         "inputs": Array<InputFile.class>
       }
  
  
@@ -72,7 +72,7 @@ The attribute environment defines the name of the environment that will be loade
       {
          "id": String,
          "label":  String,
-         "service": Service
+         "service": Service.class
       }
 
 
@@ -88,12 +88,20 @@ The attribute buttons represent the buttons on the menu that will trigger some s
          "placeholder": String,
          "checked": Boolean,
          "hide":Boolean,
-         "type": TypesAttributesEnum,
-         "elementType": ElementTypeEnum,
+         "type": TypesAttributesEnum.class,
+         "elementType": ElementTypeEnum.class,
          "childrens": Array<Properties>
     }
  
  
-The attribute properties represent the properties displayed in the elements
+The attribute properties represent the properties displayed in the elements. 
+ - name : The name of property
+ - value : The value of property
+ - placeholder : The name displayed in input 
+ - checked : The boolean that represent the selected input
+ - hide : The boolean that show or hide the property
+ - type: The property type
+ - elementType: The type of element selected
+ - childrens: The childrens of property
  
 ![envButtons](docs/images/envProperties.png)
