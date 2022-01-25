@@ -20,6 +20,8 @@ The configuration file structure is constructed by the following attributes: env
           "properties": Array<Properties>
        }
  
+### Enviromment Classes
+ 
  
       InputFile = {
          "type": String,
@@ -66,10 +68,6 @@ The attribute environment defines the name of the environment that will be loade
 ![envName](docs/images/envName.png)
 
 ### Buttons
-
-The buttons represent the buttons on the menu that will trigger some service
- 
-![envButtons](docs/images/envButtons.png)
  
       {
          "id": String,
@@ -77,6 +75,11 @@ The buttons represent the buttons on the menu that will trigger some service
          "service": Service
       }
 
+
+The attribute buttons represent the buttons on the menu that will trigger some service
+ 
+![envButtons](docs/images/envButtons.png)
+ 
 ### Properties
 
     {
@@ -89,3 +92,8 @@ The buttons represent the buttons on the menu that will trigger some service
          "elementType": ElementTypeEnum,
          "childrens": Array<Properties>
     }
+ 
+ 
+The attribute properties represent the properties displayed in the elements
+ 
+![envButtons](docs/images/envProperties.png)
