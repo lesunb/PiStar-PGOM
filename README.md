@@ -26,6 +26,7 @@ The configuration file structure is constructed by the following attributes: env
  
       InputFile = {
          "type": InputFileTypeEnum.class,
+         "extension":"InputFileExtensionEnum.class",
          "attributeName": String,
          "label": String
       }
@@ -44,6 +45,14 @@ The configuration file structure is constructed by the following attributes: env
          IMAGE: "image"
       }
  
+      InputFileExtensionEnum = {
+         XML: "xml",
+         JSON: "json",
+         TXT: "txt",
+         DOC: "doc,docx",
+         IMAGE: "image"
+      }
+      
       ElementTypeEnum = {
          GOAL: "GOAL",
          TASK: "TASK",
