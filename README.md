@@ -27,13 +27,14 @@ The buttons
 
 ### Properties
 
+{
 
-
-         "name":"GoalType",
-         "value":"Perform",
-         "placeholder":"",
-         "checked":true,
-         "hide":false,
-         "type":"OBJECT",
-         "elementType": "GOAL",
-         "childrens":[
+         "name": String,
+         "value": String,
+         "placeholder": String,
+         "checked": Boolean,
+         "hide":Boolean,
+         "type": String,
+         "elementType": String,
+         "childrens": Array<Properties>
+}
