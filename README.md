@@ -26,7 +26,8 @@ The configuration file structure is constructed by the following attributes: env
  
       InputFile = {
          "type": InputFileTypeEnum.class,
-         "attributeName": String
+         "attributeName": String,
+         "label": String
       }
  
  
