@@ -19,7 +19,7 @@ The configuration file structure is constructed by the following attributes: env
 
 The attribute environment defines the name of the environment that will be loaded.
 
-![envName](docs/images/enviromentName.png)
+![envName](docs/images/envName.png)
 
 ### Buttons
 
