@@ -40,8 +40,8 @@ The configuration file structure is constructed by the following attributes: env
  
  
       InputFileTypeEnum = {
-         FILE: "FILE",
-         IMAGE: "IMAGE"
+         FILE: "file",
+         IMAGE: "image"
       }
  
       ElementTypeEnum = {
