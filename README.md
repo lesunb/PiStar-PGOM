@@ -43,8 +43,7 @@ The configuration file structure is constructed by the following attributes: env
  
       ParamTypeEnum = {
          BODY_PARAM: "bodyParam",
-         QUERY_PARAM: "queryParam",
-         PATH_PARAM: "pathParam"
+         QUERY_PARAM: "queryParam"
       }
  
       InputFileTypeEnum = {
