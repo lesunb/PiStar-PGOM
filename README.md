@@ -26,8 +26,8 @@ The configuration file structure is constructed by the following attributes: env
  
       InputFile = {
          "type": InputFileTypeEnum.class,
-         "extension":"InputFileExtensionEnum.class",
-         "attributeName": String,
+         "extension": InputFileExtensionEnum.class,
+         "requestAttributeLabel": String,
          "label": String
       }
  
@@ -36,9 +36,16 @@ The configuration file structure is constructed by the following attributes: env
          "method":  String,
          "url":  String,
          "resultNameFile":  String,
+         "paramType": ParamTypeEnum.class,
+         "request": Object.class,
          "inputs": Array<InputFile.class>
       }
  
+      ParamTypeEnum = {
+         BODY_PARAM: "bodyParam",
+         QUERY_PARAM: "queryParam",
+         PATH_PARAM: "pathParam"
+      }
  
       InputFileTypeEnum = {
          FILE: "file",
@@ -50,7 +57,8 @@ The configuration file structure is constructed by the following attributes: env
          JSON: "json",
          TXT: "txt",
          DOC: "doc,docx",
-         IMAGE: "image"
+         IMAGE: "image",
+         ALL: ""
       }
       
       ElementTypeEnum = {
