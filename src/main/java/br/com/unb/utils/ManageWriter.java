@@ -9,11 +9,14 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.DirectoryStream;
 import java.nio.file.FileVisitOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -86,7 +89,7 @@ public class ManageWriter {
 		}
 	}
 
-	public static void toCompact(String arqEntrada, String arqSaida) throws IOException {
+	public static void toCompactFile(String arqEntrada, String arqSaida) throws IOException {
 		int cont;
 		byte[] dados = new byte[TAMANHO_BUFFER];
 
@@ -113,6 +116,34 @@ public class ManageWriter {
 		} catch (IOException e) {
 			throw new IOException(e.getMessage());
 		}
+	}
+	
+
+	public static Map<String, String> toCompactFolder(String arqEntrada, String arqSaida ) {
+		Map<String, String> results = new HashMap<String, String>();
+		try {
+			ManageWriter.createFolder(arqEntrada);
+			FileOutputStream fos = new FileOutputStream(arqSaida);
+			ZipOutputStream zos = new ZipOutputStream(fos);
+			DirectoryStream<Path> directoryStream = Files.newDirectoryStream(Paths.get(arqEntrada));
+			for (Path path : directoryStream) {
+				String fileName = path.getFileName().toString();
+				results.put(fileName, ManageWriter.readFileAsString(arqEntrada + "/" + fileName));
+				byte[] bytes = Files.readAllBytes(path);
+				zos.putNextEntry(new ZipEntry(fileName));
+				zos.write(bytes, 0, bytes.length);
+				zos.closeEntry();
+			}
+			zos.close();
+			
+			if(results.isEmpty()) {
+				throw new RuntimeException("Fails when trying to generate zip file.");
+			}
+		}  catch (Exception ex) {
+			throw new RuntimeException(ex.getMessage());
+		}
+		
+		return results;
 	}
 	
 

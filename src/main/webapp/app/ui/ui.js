@@ -29,9 +29,14 @@ var ui = function() {
 	var lastSelectedCell = null;
 	var selectedCell = null;
 	var selectedProperties = null;
-    var envirommentFile;
+    var envirommentFile = {
+		enviromment: "",
+   		buttons: [],
+   		properties:[]
+	};
 
 	return {
+		envirommentFileInputs: [],
 		states: {
 			editor: {
 				current: 2,
@@ -1385,25 +1390,79 @@ ui.getFileInput = function(fileInput, callback) {
 	}
 }
 
-ui.generateDataByDynamicInputs = function(service) { 
+ui.generateDataByDynamicInputs = function(service, inputs) { 
 	var model = istar.fileManager.saveModel();
-	let serv = new Service(service.method, service.url, service.resultNameFile, service?.inputs);
+	let serv = new Service(service.method, service.url, service.resultNameFile, service.paramType, service.request, service?.inputs);
 	let serviceData = {
-		method: service.method,
-		url: service.url, 
-		resultNameFile: service.resultNameFile,
-		data: { model : model}
+		method: serv.method,
+		url: serv.url, 
+		resultNameFile: serv.resultNameFile,
+		paramType: serv.paramType,
+		data: serv.request
 	};
+	let keys = Object.keys(serv.request);
+	let values = Object.values(serv.request);
+	values.forEach((value, index) => {
+		if(value === "PistarModel"){
+			serviceData.data[keys[index]] = model;
+		}
+	});
 
-	var inputs = serv.inputs;
 	for (var i = 0; i < inputs.length; i++) {
-		serviceData.data[inputs[i].attributeName] = inputs[i].attributeName;
+		if(keys.includes(inputs[i].key)){
+			serviceData.data[inputs[i].key] = inputs[i].value;
+		}
 	}
 	return serviceData;
 }
 
-ui.executeInputButton = function(service) { 
-	var data = ui.generateDataByDynamicInputs(service);
+ui.loadInputButtonEnviromment= function(obj) { 
+	var fileInputEnv = $("#" + obj.id);
+	try {
+		ui.getFileInput(fileInputEnv[0], function(result){
+			ui.envirommentFileInputs.forEach((inp, index) => {
+				if(inp.key == obj.name){
+					ui.envirommentFileInputs.splice(index, 1);
+				}
+			})
+			ui.envirommentFileInputs.push({key: obj.name, value: result});
+		});
+	}
+	catch (error) {
+		fileInputEnv.val(null);
+		ui.alert('Sorry, the input model is not valid.', 'Error loading file');
+	}
+}
+
+
+ui.openInputButtonEnviromment = function(button) { 
+	if(button){
+		var inputs = [];
+		var service = button.service;
+		let serv = new Service(service.method, service.url, service.resultNameFile, service.paramType, service.request, service?.inputs);
+		if(serv.inputs && serv.inputs.length <= 0){
+			var data = ui.generateDataByDynamicInputs(serv, inputs);
+			ui.executeInputButton(data);
+		}else{
+			var modalButton = "#modal-button-load-files-service";
+			var modalGeneral = "#modal-load-files-service";
+			$(modalGeneral).modal('show');
+			ui.generateButtonsService(button);
+			$(modalButton).click(function(event) {
+				event.preventDefault(); 
+				var data = ui.generateDataByDynamicInputs(serv, ui.envirommentFileInputs);
+				ui.executeInputButton(data);
+				$(modalButton).unbind();
+				$(modalGeneral).modal('hide');
+			});
+		}
+	}
+}
+
+ui
+
+
+ui.executeInputButton = function(data) { 
 	$.ajax({
 		type: "POST",
 		url: "/executePistarFactoryService",
@@ -1411,15 +1470,19 @@ ui.executeInputButton = function(service) {
 		contentType: "application/json; charset=utf-8",
 		dataType: "json",
 		success: function(res) {
-			window.open(res, '_blank');
+			// console.log(res);
+			let result = "results/zip/" + data["resultNameFile"] + ".zip";
+			window.open(result, '_blank');
+			// window.location.href = result;
 		},
 		error: function(request, status, error) {
-		    ui.handleException(request.responseText, status);
+			ui.handleException(request.responseText, status);
 		}
 	});
 }
 
 ui.generateTempButtons = function(allButtons = []) { 
+	ui.envirommentFileInputs = [];
 	var btnsPistar = $("#buttons-pistar");
 	var childrens = btnsPistar.children();
 	for (var i = 0; i < childrens.length; i++) {
@@ -1430,15 +1493,42 @@ ui.generateTempButtons = function(allButtons = []) {
 
 	var btnsPistar = $("#buttons-pistar");
 	for (var i = 0; i < allButtons.length; i++) {
-		if(allButtons[i].service){
-			var service = JSON.stringify(allButtons[i]?.service);
+		if(allButtons[i]){
+			var button = JSON.stringify(allButtons[i]);
 			var linkHTML = "<a class='btn btn-default button-vertical' id='" + allButtons[i].id + "'" +
 				" title='Save (download) the model factory to your computer' name='temp'" +
-				" onclick='ui.executeInputButton(" +  service + ")'> <span" +
+				" onclick='ui.openInputButtonEnviromment(" +  button + ")'> <span" +
 				" class='glyphicon glyphicon-floppy-save' aria-hidden='true'></span>" +
 				"<br>" + 
 				allButtons[i].label + "</a>";
 			btnsPistar.append(linkHTML);
+		}
+	}
+}
+
+ui.generateButtonsService = function(button) { 
+	var modalBody = "#modal-load-files-body";
+	$(modalBody).empty();
+	if(button.service){
+		$('#label-load-load-files-service').text(button["label"]);
+		$("#modal-button-load-files-service").text(button["label"]);
+
+
+		var service = button.service;
+		let serv = new Service(service.method, service.url, service.resultNameFile, service.paramType, service.request, service?.inputs);
+		var inputs = serv.inputs;
+		for (var j = 0; j < inputs.length; j++) {
+			var name = inputs[j]["requestAttributeLabel"];
+			var nameId = "modelFactory_" + name;
+			var eventClick = "ui.loadInputButtonEnviromment(" + nameId + ")";
+			var file =  inputs[j]["type"];
+			var label= inputs[j]["label"];
+			var extension =  inputs[j]["extension"];
+			var accept = extension ? "accept='." + extension + "'" : "";
+			var inputString =  "<div> <label for='" + nameId + "'>" + label + "</label> " +
+			  "<input type='" + file + "' id='" + nameId + "' name='" + name + "'" + accept + 
+			  "onchange='" + eventClick + "'></div><br/>";
+			$(modalBody).append(inputString);
 		}
 	}
 }
@@ -2276,11 +2366,13 @@ class Model {
 }
 
 class Service {
-	constructor(method, url, resultNameFile, inputs) {
+	constructor(method, url, resultNameFile, paramType, request, inputs) {
 		this.method = method;
 		this.url = url;
 		this.resultNameFile = resultNameFile;
 		this.inputs = inputs ? inputs : [];
+		this.request = request;
+		this.paramType = paramType;
 	}
 }
 

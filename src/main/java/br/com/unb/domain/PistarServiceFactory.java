@@ -5,6 +5,7 @@ public class PistarServiceFactory {
 	private String url;
 	private Object data;
 	private String resultNameFile;
+	private String paramType;
 	
 	public String getMethod() {
 		return method;
@@ -29,5 +30,11 @@ public class PistarServiceFactory {
 	}
 	public void setResultNameFile(String resultPath) {
 		this.resultNameFile = resultPath;
+	}
+	public String getParamType() {
+		return paramType;
+	}
+	public void setParamType(String paramType) {
+		this.paramType = paramType;
 	}
 }
