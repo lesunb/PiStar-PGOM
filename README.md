@@ -52,6 +52,7 @@ The configuration file structure is constructed by the following attributes: env
       }
  
       InputFileExtensionEnum = {
+         HDDL: "hddl",
          XML: "xml",
          JSON: "json",
          TXT: "txt",
