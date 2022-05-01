@@ -6,8 +6,22 @@
          "label":"Generate Prism MDP",
          "service":{
             "method":"POST",
-            "url":"https://pistar-goda-mutrose.herokuapp.com/prism/MDP",
+            "url":"https://pistar-goda.herokuapp.com/prism/MDP",
             "resultNameFile": "prismMDP",
+            "paramType": "bodyParam",
+            "request": {
+               "content": "PistarModel" 
+             },
+            "inputs":[]
+         }
+      },
+      {
+         "id":"genPrismMDP",
+         "label":"Generate Prism DTMC",
+         "service":{
+            "method":"POST",
+            "url":"https://pistar-goda.herokuapp.com/prism/DTMC",
+            "resultNameFile": "prismDTMC",
             "paramType": "bodyParam",
             "request": {
                "content": "PistarModel" 
@@ -20,7 +34,7 @@
          "label":"Generate Param",
          "service":{
             "method":"POST",
-            "url":"https://pistar-goda-mutrose.herokuapp.com/param/DTMC",
+            "url":"https://pistar-goda.herokuapp.com/param",
             "resultNameFile": "param",
             "paramType": "bodyParam",
             "request": {
@@ -34,7 +48,7 @@
          "label":"Generate EPMC",
          "service":{
             "method":"POST",
-            "url":"https://pistar-goda-mutrose.herokuapp.com/epmc/DTMC",
+            "url":"https://pistar-goda.herokuapp.com/epmc",
             "resultNameFile": "epmc",
             "paramType": "bodyParam",
             "request": {
