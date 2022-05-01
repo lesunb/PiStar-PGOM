@@ -1,0 +1,230 @@
+{
+   "enviromment": "MutRoSe",
+   "buttons":[
+      {
+         "id":"genMutrose",
+         "label":"Execute MutRoSe Analisys",
+         "service":{
+            "method":"POST",
+            "url":"https://pistar-goda-mutrose.herokuapp.com/load/mutrose",
+            "resultNameFile": "result",
+            "paramType": "bodyParam",
+            "request": {
+               "modelFile": "PistarModel",
+               "hddlFile": "hddlFile",
+               "configFile": "configFile",
+               "worldFile": "worldFile"            },
+            "inputs":[
+               {
+                  "type":"FILE",
+                  "requestAttributeLabel": "hddlFile",
+                  "label": "HDDL File",
+                  "extension": "hddl"
+               },
+               {
+                  "type":"FILE",
+                  "requestAttributeLabel": "configFile",
+                  "label": "Configuration File",
+                  "extension": "json"
+               },
+               {
+                  "type":"FILE",
+                  "requestAttributeLabel": "worldFile",
+                  "label": "World Knowledge File",
+                  "extension": "xml"
+               }
+            ]
+         }
+      }
+   ],
+   "properties":[
+      {
+         "name":"GoalType",
+         "value":"Perform",
+         "placeholder":"",
+         "checked":true,
+         "hide":false,
+         "type":"OBJECT",
+         "elementType": "GOAL",
+         "childrens":[
+            {
+               "name":"Query",
+               "value":"QueriedProperty",
+               "placeholder":"",
+               "checked":false,
+               "hide":true,
+               "type":"RADIO_BUTTON",
+               "elementType": "GOAL",
+               "childrens":[
+                  {
+                     "name":"QueriedProperty",
+                     "value":"",
+                     "placeholder":"$[Queried Var]$->select($[Query Var]$:$[Query var Type]$ | $[condition]$)",
+                     "checked":true,
+                     "hide":false,
+                     "type":"TEXT",
+                     "elementType": "GOAL",
+                     "childrens":[
+                        
+                     ]
+                  }
+               ]
+            },
+            {
+               "name":"Achieve",
+               "value":"UniversalAchieveCondition",
+               "placeholder":"",
+               "checked":false,
+               "hide":false,
+               "type":"OBJECT",
+               "elementType": "GOAL",
+               "childrens":[
+                  {
+                     "name":"UniversalAchieveCondition",
+                     "value":"",
+                     "placeholder":"$Iterated Var$->forAll($Iterated Var$ | $condition$)",
+                     "checked":false,
+                     "hide":false,
+                     "type":"TEXT",
+                     "elementType": "GOAL",
+                     "childrens":[
+                        
+                     ]
+                  },
+                  {
+                     "name":"AchieveCondition",
+                     "value":"",
+                     "placeholder":"Condition",
+                     "checked":true,
+                     "hide":false,
+                     "type":"EXPRESSION",
+                     "elementType": "GOAL",
+                     "childrens":[
+                        
+                     ]
+                  }
+               ]
+            },
+            {
+               "name":"Perform",
+               "value":"true",
+               "placeholder":"",
+               "checked":true,
+               "hide":true,
+               "type":"BOOLEAN",
+               "elementType": "GOAL",
+               "childrens":[
+                  
+               ]
+            }
+         ]
+      },
+      {
+         "name":"Group",
+         "value":"true",
+         "placeholder":"",
+         "checked":true,
+         "hide":false,
+         "type":"CHECKBOX",
+         "elementType": "GOAL",
+         "childrens":[
+            
+         ]
+      },
+      {
+         "name":"Divisible",
+         "value":"true",
+         "placeholder":"",
+         "checked":true,
+         "hide":false,
+         "type":"CHECKBOX",
+         "elementType": "GOAL",
+         "childrens":[
+            
+         ]
+      },
+      {
+         "name":"Monitors",
+         "value":"",
+         "placeholder":"",
+         "checked":false,
+         "hide":false,
+         "type":"TEXT",
+         "elementType": "GOAL",
+         "childrens":[
+            
+         ]
+      },
+      {
+         "name":"Controls",
+         "value":"",
+         "placeholder":"",
+         "checked":false,
+         "hide":false,
+         "type":"TEXT",
+         "elementType": "GOAL",
+         "childrens":[
+            
+         ]
+      },
+      {
+         "name":"Location",
+         "value":"",
+         "placeholder":"",
+         "checked":false,
+         "hide":false,
+         "type":"TEXT",
+         "elementType": "TASK",
+         "childrens":[
+            
+         ]
+      },
+      {
+         "name":"Parameters",
+         "value":"",
+         "placeholder":"",
+         "checked":false,
+         "hide":false,
+         "type":"TEXT",
+         "elementType": "TASK",
+         "childrens":[
+            
+         ]
+      },
+      {
+         "name":"RobotNumber",
+         "value":"Fixed",
+         "placeholder":"",
+         "checked":true,
+         "hide":false,
+         "type":"OBJECT",
+         "elementType": "TASK",
+         "childrens":[
+            {
+               "name":"Fixed",
+               "value":"",
+               "placeholder":"",
+               "checked":true,
+               "hide":false,
+               "type":"TEXT",
+               "elementType": "TASK",
+               "childrens":[
+                  
+               ]
+            },
+            {
+               "name":"range",
+               "value":"",
+               "placeholder":"",
+               "checked":false,
+               "hide":false,
+               "type":"TEXT",
+               "elementType": "TASK",
+               "childrens":[
+                  
+               ]
+            }
+         ]
+      }
+   ]
+}

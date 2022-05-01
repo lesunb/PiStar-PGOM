@@ -1,0 +1,48 @@
+{
+   "enviromment": "GODA",
+   "buttons":[
+      {
+         "id":"genPrismMDP",
+         "label":"Generate Prism MDP",
+         "service":{
+            "method":"POST",
+            "url":"https://pistar-goda-mutrose.herokuapp.com/prism/MDP",
+            "resultNameFile": "prismMDP",
+            "paramType": "bodyParam",
+            "request": {
+               "content": "PistarModel" 
+             },
+            "inputs":[]
+         }
+      },
+      {
+         "id":"genParam",
+         "label":"Generate Param",
+         "service":{
+            "method":"POST",
+            "url":"https://pistar-goda-mutrose.herokuapp.com/param/DTMC",
+            "resultNameFile": "param",
+            "paramType": "bodyParam",
+            "request": {
+               "content": "PistarModel" 
+             },
+            "inputs":[]
+         }
+      },
+      {
+         "id":"genEPMC",
+         "label":"Generate EPMC",
+         "service":{
+            "method":"POST",
+            "url":"https://pistar-goda-mutrose.herokuapp.com/epmc/DTMC",
+            "resultNameFile": "epmc",
+            "paramType": "bodyParam",
+            "request": {
+               "content": "PistarModel" 
+             },
+            "inputs":[]
+         }
+      }
+   ],
+   "properties":[]
+}

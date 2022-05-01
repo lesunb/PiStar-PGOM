@@ -370,34 +370,6 @@ var ui = function() {
 
 			return bool;
 		},
-		//Essa funcao recupera os valores salvos no model e atualiza a property que irá gerar o html de configuracao do ROS dentro da modal de ediçao
-		setValuesPropByCell(props, properties, value = null) {
-			for (var j = 0; j < properties.length; j++) {
-				var name = properties[j].name;
-				var childrens = properties[j].childrens;
-				if (props && props[name] != null && props[name] != "" && props[name] != undefined) {
-					properties[j].value = props[name];
-					if (props[name] == "true" || props[name] == true) {
-						properties[j].checked = true;
-					}
-					if (props[name] == "false" || props[name] == false) {
-						properties[j].checked = false;
-					}
-				}
-
-				if (value != null && value != "" && value != undefined) {
-					if (value == properties[j].name) {
-						properties[j].checked = true;
-					} else {
-						properties[j].checked = false;
-					}
-				}
-
-				if (childrens && childrens.length > 0) {
-					ui.setValuesPropByCell(props, childrens, properties[j].value);
-				}
-			}
-		},
 		setValuesProp(properties) {
 
 			for (var i = 0; i < properties.length; i++) {
