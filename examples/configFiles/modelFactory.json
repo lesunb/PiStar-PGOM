@@ -2,20 +2,33 @@
    "enviromment": "MutRoSe",
    "buttons":[
       {
-         "id":"epmcRunModel",
-         "label":"Generate EPMC",
+         "id":"genMutrose",
+         "label":"Execute MutRoSe Analisys",
          "service":{
             "method":"POST",
-            "url":"https://pistar-goda-mutrose.herokuapp.com/prism/MDP",
-            "resultNameFile": "prismMDP",
+            "url":"https://pistar-goda-mutrose.herokuapp.com/load/mutrose",
+            "resultNameFile": "result",
+            "paramType": "bodyParam",
+            "request": {
+               "modelFile": "PistarModel",
+               "hddlFile": "hddlFile",
+               "configFile": "configFile",
+               "worldFile": "worldFile"            },
             "inputs":[
                {
                   "type":"FILE",
-                  "attributeName": "hddl"
+                  "attributeName": "hddlFile",
+                  "label": "HDDL File"
                },
                {
                   "type":"FILE",
-                  "attributeName": "config"
+                  "attributeName": "configFile",
+                  "label": "Configuration File"
+               },
+               {
+                  "type":"FILE",
+                  "attributeName": "worldFile",
+                  "label": "World Knowledge File"
                }
             ]
          }
