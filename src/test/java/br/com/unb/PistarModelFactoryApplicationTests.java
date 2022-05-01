@@ -1,33 +1,39 @@
 package br.com.unb;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.bind.annotation.RequestMethod;
-
+import br.com.unb.comptest.BaseTest;
 import br.com.unb.domain.PistarServiceFactory;
 import br.com.unb.service.PistarService;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@SpringBootTest
-class PistarModelFactoryApplicationTests {
-	@Autowired
-	private PistarService service;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-	@Test
-	void contextLoads() {
-		PistarServiceFactory pistarServiceFactory = new PistarServiceFactory();
-//		pistarServiceFactory.setUrl("http://localhost:8080/executePistarFactory");
-//		pistarServiceFactory.setMethod(RequestMethod.POST.name());
-//		pistarServiceFactory.setData(pistarServiceFactory);
-		
-		pistarServiceFactory.setUrl("http://localhost:8080/teste");
-		pistarServiceFactory.setMethod(RequestMethod.GET.name());
-		pistarServiceFactory.setData(null);
-		
-		Object result = this.service.executePistarFactoryService(pistarServiceFactory);
+class PistarModelFactoryApplicationTests extends BaseTest {
 
-		System.out.println(result);
-//		System.out.println(result.getStatusCodeValue());
-	}
+    @Autowired
+    private PistarService service;
 
+    @Test
+    void executePistarFactoryMutrose() {
+        PistarServiceFactory pistarFactory = getResourceAsClass("src/test/resources/MutRoSe/PistarFactoryMutrose.json", PistarServiceFactory.class);
+        String resultMutRoSe = getResourceAsString("src/test/resources/MutRoSe/PistarFactoryMutroseResult.txt");
+        Object result = this.service.executePistarFactoryService(pistarFactory);
+        assertEquals(format(result), format(resultMutRoSe));
+    }
+
+    @Test
+    void executePistarFactoryGODA() {
+        PistarServiceFactory pistarFactory = getResourceAsClass("src/test/resources/GODA/PistarFactoryGODA.json", PistarServiceFactory.class);
+        String resultMutRoSe = getResourceAsString("src/test/resources/GODA/PistarFactoryGodaResult.txt");
+        Object result = this.service.executePistarFactoryService(pistarFactory);
+        assertEquals(format(result), format(resultMutRoSe));
+    }
+
+//    @Test
+//    void executePistarFactoryGODA2() {
+//        PistarServiceFactory pistarFactory = getResourceAsClass("src/test/resources/GODA/PistarFactoryGodaMaster.json", PistarServiceFactory.class);
+//        String resultMutRoSe = getResourceAsString("src/test/resources/GODA/PistarFactoryGodaResult.txt");
+//        Object result = this.service.executePistarFactoryService(pistarFactory);
+//        assertEquals(format(result), format(resultMutRoSe));
+//    }
 }

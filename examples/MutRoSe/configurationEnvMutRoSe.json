@@ -13,8 +13,7 @@
                "modelFile": "PistarModel",
                "hddlFile": "hddlFile",
                "configFile": "configFile",
-               "worldFile": "worldFile"           
-            },
+               "worldFile": "worldFile"            },
             "inputs":[
                {
                   "type":"FILE",
