@@ -8,11 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="modelFactory" />
+        <module name="PistarModelFactory" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="PistarModelFactory" options="-parameters" />
       <module name="modelFactory" options="-parameters" />
     </option>
   </component>

@@ -27,11 +27,12 @@ public class BaseTest {
         StringBuilder stringBuilder = new StringBuilder();
         object.toString().lines().forEach(line -> {
             if (!line.isEmpty() && !line.isBlank()) {
-                stringBuilder.append(line.replaceAll(" ", "").trim());
+                stringBuilder.append(line.trim());
             }
         });
 
         return stringBuilder.toString()
+                .replaceAll(" ", "")
                 .replaceAll(",", ",\n")
                 .replaceAll(";", ",\n")
                 .trim();

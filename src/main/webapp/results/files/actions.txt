@@ -1,1 +1,0 @@
-[{"name":"clean-room","capabilities":"cleaning"},{"name":"clean-rooms-check","capabilities":""},{"name":"move-furniture","capabilities":"moveobject"},{"name":"open-door","capabilities":"door-opening"},{"name":"sanitize-robot","capabilities":"sanitize"}]
