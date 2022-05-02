@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class PistarModelFactoryApplicationTests extends BaseTest {
 
@@ -20,6 +21,35 @@ class PistarModelFactoryApplicationTests extends BaseTest {
         Object result = this.service.executePistarFactoryService(pistarFactory);
         assertEquals(format(result), format(resultMutRoSe));
     }
+
+    @Test
+    void executePistarFactoryMutroseNotSendModelFile() {
+        PistarServiceFactory pistarFactory = getResourceAsClass("src/test/resources/MutRoSe/PistarFactoryMutrose.json", PistarServiceFactory.class);
+        Object result = this.service.executePistarFactoryService(pistarFactory);
+        assertNull(result);
+    }
+
+    @Test
+    void executePistarFactoryMutroseNotSendHddlFile() {
+        PistarServiceFactory pistarFactory = getResourceAsClass("src/test/resources/MutRoSe/PistarFactoryMutrose.json", PistarServiceFactory.class);
+        Object result = this.service.executePistarFactoryService(pistarFactory);
+        assertNull(result);
+    }
+
+    @Test
+    void executePistarFactoryMutroseNotSendConfigurationFile() {
+        PistarServiceFactory pistarFactory = getResourceAsClass("src/test/resources/MutRoSe/PistarFactoryMutrose.json", PistarServiceFactory.class);
+        Object result = this.service.executePistarFactoryService(pistarFactory);
+        assertNull(result);
+    }
+
+    @Test
+    void executePistarFactoryMutroseNotSendWorldKnowledgeFile() {
+        PistarServiceFactory pistarFactory = getResourceAsClass("src/test/resources/MutRoSe/PistarFactoryMutrose.json", PistarServiceFactory.class);
+        Object result = this.service.executePistarFactoryService(pistarFactory);
+        assertNull(result);
+    }
+
 
     @Test
     void executePistarFactoryGODA() {
