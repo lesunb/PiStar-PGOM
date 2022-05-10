@@ -1,5 +1,9 @@
-# PistarModelFactory 
+# Pistar-PGOM
 
+Plugins in Goal Oriented Models.
+
+Plugin-Driven Approach to Selection and Execution of
+Systems That Use Goal-Oriented Modeling
 
  Pistar is an open-source goal modelling tool. Its key distinguishing characteristics are:
   - it runs entirely on the browser, thus no installation needed
