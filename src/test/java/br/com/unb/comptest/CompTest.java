@@ -1,6 +1,6 @@
 package br.com.unb.comptest;
 
-import br.com.unb.PistarModelFactoryApplication;
+import br.com.unb.PGOMApplication;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -13,7 +13,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@ContextConfiguration(classes = PistarModelFactoryApplication.class)
+@ContextConfiguration(classes = PGOMApplication.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public @interface CompTest {
 }

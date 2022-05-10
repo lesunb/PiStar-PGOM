@@ -8,10 +8,10 @@ import br.com.unb.exception.ResponseExceptionHandler;
 
 @SpringBootApplication
 @Import(ResponseExceptionHandler.class)
-public class PistarModelFactoryApplication {
+public class PGOMApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PistarModelFactoryApplication.class, args);
+		SpringApplication.run(PGOMApplication.class, args);
 	}
 
 }
