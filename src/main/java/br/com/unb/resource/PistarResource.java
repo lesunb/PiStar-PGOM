@@ -14,7 +14,7 @@ public class PistarResource {
     @Autowired
     private PistarService service;
 
-    @RequestMapping(value = "/executePistarFactoryService", method = RequestMethod.POST)
+    @RequestMapping(value = "/executePIGOM", method = RequestMethod.POST)
     public Object executePistarFactoryService(@RequestBody PistarServiceFactory pistarFactory) {
         return this.service.executePistarFactoryService(pistarFactory);
     }
