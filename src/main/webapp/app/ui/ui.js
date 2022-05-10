@@ -1437,7 +1437,7 @@ ui
 ui.executeInputButton = function(data) { 
 	$.ajax({
 		type: "POST",
-		url: "/executePistarFactoryService",
+		url: "/executePIGOM",
 		data: JSON.stringify(data),
 		contentType: "application/json; charset=utf-8",
 		dataType: "json",
